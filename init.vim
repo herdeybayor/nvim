@@ -7,6 +7,7 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
+:set scrolloff=8
 
 call plug#begin()
 
@@ -50,7 +51,7 @@ nmap <F8> :TagbarToggle<CR>
 
 :set completeopt-=preview " For No Previews
 
-:colorscheme jellybeans
+":colorscheme jellybeans
 
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
