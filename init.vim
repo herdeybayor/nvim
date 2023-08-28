@@ -3,10 +3,12 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'awesome-vim-colorschemes'
 call plug#end()
 
 " Set various settings
-set scrolloff=8
+set scrolloff=10
 set number
 set relativenumber
 set tabstop=4 softtabstop=4
@@ -14,6 +16,8 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set autoindent
+set cindent
+syntax enable
 " colorscheme
 set termguicolors     " enable true colors support
 let ayucolor="dark"   " for dark version of theme
