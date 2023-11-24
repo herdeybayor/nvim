@@ -27,6 +27,9 @@ Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 Plug 'rstacruz/vim-closer' " For brackets autocompletion
 Plug 'github/copilot.vim' " Co-Pilot
+Plug 'zivyangll/git-blame.vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 
 " Auto-completion  For Javascript
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
@@ -59,6 +62,7 @@ nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -84,6 +88,14 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
+" lspinstall
+lua require'lspinstall'.setup()
+local servers = require'lspinstall'.installed_servers()
+for _, server in pairs(servers) do
+  require'lspconfig'[server].setup{}
+end
+lua << EOF
+
 " airline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -93,4 +105,4 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-"inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
