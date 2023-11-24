@@ -28,9 +28,8 @@ return require('packer').startup(function(use)
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v3.x',
 	  requires = {
-		  --- Uncomment these if you want to manage LSP servers from neovim
-		  -- {'williamboman/mason.nvim'},
-		  -- {'williamboman/mason-lspconfig.nvim'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
 
 		  -- LSP Support
 		  {'neovim/nvim-lspconfig'},
@@ -41,10 +40,12 @@ return require('packer').startup(function(use)
 	  }
   }
 
-  use {
-	  "williamboman/mason.nvim",
-	  "williamboman/mason-lspconfig.nvim",
-	  "neovim/nvim-lspconfig",
-  }
+  use ({
+      'nvimdev/lspsaga.nvim',
+      after = 'nvim-lspconfig',
+      config = function()
+          require('lspsaga').setup({})
+      end,
+  })
 
 end)
